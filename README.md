@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+# Example MQTT for MCUs
+ note : tổng hợp tài liệu và code ví dụ phát triển MQTT trên vi điều khiển .
 
-You can use the [editor on GitHub](https://github.com/mana147/example-MQTT/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Khái niệm cơ bản về MQTT 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- MQTT (Message Queuing Telemetry Transport) là một giao thức gởi dạng publish/subscribe ( xuất bản / theo dõi ) . 
+- Giao thức thường chạy trên TCP / IP . Tuy nhiên, bất kỳ giao thức mạng nào cung cấp các kết nối hai chiều, không mất dữ liệu đều có thể hỗ trợ MQTT . 
+- Được sử dụng cho các thiết bị với băng thông thấp , độ tin cậy cao và khả năng được sử dụng trong mạng lưới không ổn định.
 
-### Markdown
+_note :_ đọc lại tài liệu và nắm rõ về giao thức mạng TCP/IP .  
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Kiến trúc bậc cao của MQTT gồm **Broker** và **Client** .
 
-```markdown
-Syntax highlighted code block
+- Broker như máy chủ chung tâm điều phối dữ liệu , có thể hiểu Broker là một app chạy trên Server, nhiệm vụ của nó bao gồm :
+    - nhận message từ publis .
+    - xếp các messge theo hàng đợi .
+    - chuyển các message tới một địa chỉ cụ thể .
+    - bảo mật mess
+    - lưu trữ mess
+    - logs ...
 
-# Header 1
-## Header 2
-### Header 3
+- Client for MQTT được chia thành  **Publisher** and **Subscriber** , nhiệm vụ của nó :
+    - Subscribe (theo dõi / đăng ký) một topic để nhận mess từ topic này .
+    - Publish mess ( gửi data ) lên một topic cụ thể ( topic tương tự như một kênh thông tin đc điều phối bởi Broker)
+    - hoặc có thể vừa Publish vừa Subscribe 
 
-- Bulleted
-- List
+### Cơ chế hoạt động cụ thể của Publisher và Subscribe
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mana147/example-MQTT/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- mỗi một client sẽ đăng ký một kênh (topic) ví dụ "/client1/channel1" , "/client1/channel2" ... Quá trình này gọi là Subscribe 
+- mỗi một client sẽ nhận dữ liệu khi có client khác gửi thông tin vào kênh topic đó , việc client đẩy data lên topic gọi là Publish .
+ 

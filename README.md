@@ -1,6 +1,8 @@
 # Example MQTT for MCUs
  note : tổng hợp tài liệu và code ví dụ phát triển MQTT trên vi điều khiển .
 
+![alt text] (https://raw.githubusercontent.com/mana147/Example-MQTT/master/DOCUMENT/mqtt_broker.png)
+
 ## Khái niệm cơ bản về MQTT 
 
 - MQTT (Message Queuing Telemetry Transport) là một giao thức gởi dạng publish/subscribe ( xuất bản / theo dõi ) . 
@@ -37,7 +39,15 @@ note : QoS levels càng cao thì càng tin cậy hơn , nhưng delay sẽ lâu h
 1. QoS1 : Broker / client sẽ gửi dữ liệu với ít nhất 1 lần sác nhận từ đầu kia 
 2. Qos2 : Broker / client đảm bảo khi gửi dữ liệu thì phía nhận đc đúng 1 lần , quá trình này phải trải qua 4 bước bắt tay .
 
+![alt text] (https://raw.githubusercontent.com/mana147/Example-MQTT/master/DOCUMENT/mqtt-publish-flow-qos-1.jpg)
+
+![alt text] (https://raw.githubusercontent.com/mana147/Example-MQTT/master/DOCUMENT/mqtt-publish-flow-qos-2.jpg)
+
 Một gói tin data có thể đc client gửi ở bất kì levels QoS nào . các client có thể đăng ký nhận data ở bất kỳ levels QoS , ví dụ A gửi data bằng phương thức QoS2 vào kênh , thì B có thể nhận data bằng QoS0 hoặc bất kỳ .
+
+![alt text] (https://raw.githubusercontent.com/mana147/Example-MQTT/master/DOCUMENT/Broker_Client.png)
+
+![alt text] (https://raw.githubusercontent.com/mana147/Example-MQTT/master/DOCUMENT/MQTT_Server.jpg)
 
 ### Retained Messages (Flag)
 note : tất cả các messages có thể thiết lập đc giữ lại , điều này có nghĩa là broker sẽ giữ lại messages ngay cả khi nó đã đc gửi cho các client 

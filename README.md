@@ -65,3 +65,15 @@ note : MQTT Bridge là một tính năng của MQTT cho phép các MQTT Broker c
     - tên topic chao đổi dữ liệu giữa 2 broker
     - chiều chao đổi , 1 chiều hoặc 2 chiều
     - topic mapping giữa 2 broker
+
+
+#### Tài liệu tham khảo 
+1. https://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php
+2. https://arduino.esp8266.vn/network/mqtt.html
+3. https://github.com/mqtt/mqtt.github.io/wiki
+4. http://www.steves-internet-guide.com/mqtt/
+
+#### Project MQTT for Esp8266 
+1. https://iotdesignpro.com/projects/how-to-connect-esp8266-with-mqtt
+2. https://pubsubclient.knolleary.net/index.html
+3. https://medium.com/@flespi/how-to-connect-esp8266-to-secure-mqtt-broker-know-it-all-and-get-it-done-approach-c33b94f37d88

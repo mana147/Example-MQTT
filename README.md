@@ -28,4 +28,30 @@ _note :_ đọc lại tài liệu và nắm rõ về giao thức mạng TCP/IP .
 
 - mỗi một client sẽ đăng ký một kênh (topic) ví dụ "/client1/channel1" , "/client1/channel2" ... Quá trình này gọi là Subscribe 
 - mỗi một client sẽ nhận dữ liệu khi có client khác gửi thông tin vào kênh topic đó , việc client đẩy data lên topic gọi là Publish .
- 
+
+### Qos ( Qualities of service ) .
+
+note : QoS levels càng cao thì càng tin cậy hơn , nhưng delay sẽ lâu hơn và có yêu cầu băng thông cao hơn.
+
+0. QoS0 : Broker / client sẽ gửi dữ liệu đúng 1 lần . quá trình gửi đc sác nhận bởi giao thức TCP/IP
+1. QoS1 : Broker / client sẽ gửi dữ liệu với ít nhất 1 lần sác nhận từ đầu kia 
+2. Qos2 : Broker / client đảm bảo khi gửi dữ liệu thì phía nhận đc đúng 1 lần , quá trình này phải trải qua 4 bước bắt tay .
+
+Một gói tin data có thể đc client gửi ở bất kì levels QoS nào . các client có thể đăng ký nhận data ở bất kỳ levels QoS , ví dụ A gửi data bằng phương thức QoS2 vào kênh , thì B có thể nhận data bằng QoS0 hoặc bất kỳ .
+
+### Retained Messages (Flag)
+note : tất cả các messages có thể thiết lập đc giữ lại , điều này có nghĩa là broker sẽ giữ lại messages ngay cả khi nó đã đc gửi cho các client 
+- Retain là một cờ (flag) đc gắn vào message của giao thức MQTT .
+- Retain chỉ nhận giá trị 0 = false và 1 = true.
+- Cơ chế hoạt động :
+    - Nếu Retain = 1 : broker sẽ lưu lại message cuối cùng topic kèm theo QoS tương ứng , khi có client đăng ký vào topic thì clien này sẽ ngay lập tức nhận đc message. 
+
+
+### MQTT Bridge 
+note : MQTT Bridge là một tính năng của MQTT cho phép các MQTT Broker có thể tạo cầu nối (bridge) kết nối với nhau để chao đổi dữ liệu , cần 2 broker để tạo cầu nối , trong đó một broker bất kỳ đc cấy hình thành Bridge , cần những thông số sau :
+- address : địa chỉ của broker cần kết nối 
+- bridge_protocol_version : phiên bản giao thức MQTT đang được sử dụng chung cho 2 broker
+- topic  phần này định nghĩa 3 tham số :
+    - tên topic chao đổi dữ liệu giữa 2 broker
+    - chiều chao đổi , 1 chiều hoặc 2 chiều
+    - topic mapping giữa 2 broker

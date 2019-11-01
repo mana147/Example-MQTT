@@ -12,8 +12,6 @@
 #define __MAIN_H_
 
 #include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include <functional>
 
 #include <Adafruit_MQTT_Client.h>
 #include <Adafruit_MQTT.h>
@@ -22,10 +20,6 @@
 /*------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------*/
 
-
-WiFiClient espClient;
-
-PubSubClient client(espClient);
 
 void Config_Wifi (const char *ID , const char *PASS )
 {

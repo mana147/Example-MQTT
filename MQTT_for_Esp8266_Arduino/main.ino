@@ -28,8 +28,6 @@ Adafruit_MQTT_Publish MQTT_Publish (&MQTT_Client, TOPIC , 0x1 );
 // Setup for subscribe
 Adafruit_MQTT_Subscribe MQTT_Subscribe (&MQTT_Client, TOPIC , 0x1 );
 
-Adafruit_MQTT_Subscribe *subscription;  
-
 int numb = 0 ;
 
 /**********************************************************************

@@ -75,3 +75,34 @@ Adafruit_MQTT_Subscribe MQTT_Subscribe (
     TOPIC ,         // TOPIC muốn đăng ký vào 
     MQTT_QOS_1);    // QoS 
 ```
+
+- cài đặt cấu hình wifi 
+```
+Function_Config_Wifi (WLAN_SSID , WLAN_PASS );
+```
+- chú ý : các hàm dưới đây phải để tuần tự không thay đổi .
+- check fingerprint sác nhận chứng chỉ bảo mật (Security Certificate's Authentic Fingerprint)
+- để lấy fingerprint có thể sử dụng thông qua web https://www.grc.com/fingerprints.htm hoặc nhiều cách khăc
+```
+Client_SSL.setFingerprint(fingerprint) ? s_pln ("/ Finger ok") : s_pln ("/ Finger not ok") ;
+```
+- gọi hàm sub trước khi chạy connect() , nếu để chạy sau sẽ không đăng ký đc 
+```
+MQTT_Client.subscribe (&MQTT_Subscribe);
+```
+- gọi hàm connect() và kiểm tra kết nối tới server , hàm này trả về giá trị 0 có nghĩ là đã kết nối thành công
+```
+MQTT_Client.connect() == 0 ? s_pln ("/ MQTT_Client connected ") : s_pln ("Error");
+```
+
+- Function đăng ký và pub data lên topic vừa đăng ký với server broker 
+```
+MQTT_Publish.publish(const char *data ); 
+```
+
+- Function nghe mes từ topic đăng ký với server với khoảng thời gian 
+```
+MQTT_Client.readSubscription(1000) ? 
+    Serial.println((char *)MQTT_Subscribe.lastread) : // hàm này hiển thị mess đọc đc từ server 
+    0x01;
+```

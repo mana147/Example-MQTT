@@ -1,3 +1,8 @@
+# node js
+MQTT_for_NodeJS/node_modules
+MQTT_for_NodeJS/package-lock.json
+
+
 # Prerequisites
 *.d
 build
